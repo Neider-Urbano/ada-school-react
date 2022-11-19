@@ -1,11 +1,10 @@
 import './App.css'
-import Task from './components/Task';
-
+import Main from "./components/Main.jsx"
 function App() {
 
   return (
     <div className="container mainTask">
-      <Task />
+      <Main />
     </div>
   )
 }
