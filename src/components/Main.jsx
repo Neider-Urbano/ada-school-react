@@ -4,52 +4,68 @@ import ButtonDanger from './ButtonDanger';
 import AddTask from './addTask'
 import TaskList from './TaskList';
 
-
-const dataTask=[
-    {
-        "id":1,
-        "name":"ver vt"
-    },{
-        "id":2,
-        "name":"jugar celular"
-    },{
-        "id":3,
-        "name":"ir al parque"
-    }
-]
-
-
 const Main = () => {
-
-    const [arrayTask,setArrayTask]=useState(dataTask)
-    const [taskPending,setTaskPending]=useState(dataTask.length)
+    const [arrayTask,setArrayTask]=useState([])
+    const [taskPending,setTaskPending]=useState(arrayTask.length)
+    const miStorage = window.localStorage;
 
     useEffect(()=>{
-    },[arrayTask,taskPending])
+        var dataTasks = JSON.parse(miStorage.getItem("dataTasks"))
+        if(dataTasks){
+            setArrayTask(dataTasks)
+            let cantidadPending = 0;
+            dataTasks?.map((task)=>{
+                if(task.state==false){
+                    cantidadPending++;
+                }
+            })
+            setTaskPending(cantidadPending)
+        }
+    },[taskPending])
 
     const handleClickClear=()=>{
         if(arrayTask.length>0){
-            setArrayTask([])
+            miStorage.clear();
             setTaskPending(0)
+            setArrayTask([])
         }
     }
 
-    const handleClickDelete=(name)=>{
-        let deleteTask=arrayTask.filter((task)=>task.name!=name)
-        setArrayTask(deleteTask)
+    const handleClickDelete=(id)=>{
+        var dataTasks = JSON.parse(miStorage.getItem("dataTasks"))
+        let deleteTask=dataTasks.filter((task)=>task.id!=id)
+        miStorage.setItem("dataTasks",JSON.stringify(deleteTask))
+        setArrayTask(deleteTask);
         setTaskPending(taskPending-1)
     }
 
-    const handleClickRadio=(boolean)=>{
-        if(boolean) setTaskPending(taskPending+1)
-        else setTaskPending(taskPending-1)
+    const handleClickRadio=(boolean,idTask)=>{
+        var dataTasks = JSON.parse(miStorage.getItem("dataTasks"))
+        let updateTask=dataTasks.map((task)=>{
+            if(task.id==idTask){
+                task.state=boolean
+            }
+            return task;
+        })
+        miStorage.setItem("dataTasks",JSON.stringify(updateTask))
+        if(boolean) setTaskPending(taskPending-1)
+        else setTaskPending(taskPending+1)
     }
 
     const handleClickAdd=(dataNewTask)=>{
-        let arrayUpdate=arrayTask;
-        arrayUpdate.push({"id":Math.max(...arrayTask.map(task => task.id))+1,"name":dataNewTask})
-        setArrayTask(arrayUpdate)
-        setTaskPending(taskPending+1)
+        if(dataNewTask.length>0){
+            var dataTasks = dataTasks=JSON.parse(miStorage.getItem("dataTasks"))
+            if(dataTasks){
+                dataTasks.push({"id":Math.max(...dataTasks.map(task => task.id))+1,"name":dataNewTask, "state":false})
+            }else{
+                dataTasks=[]
+                dataTasks.push({"id":1,"name":dataNewTask, "state":false})
+            }
+            miStorage.setItem("dataTasks",JSON.stringify(dataTasks))
+            setTaskPending(taskPending+1)
+        }else{
+            alert("escribe alguna tarea")
+        }
     }
 
     return (
@@ -57,7 +73,7 @@ const Main = () => {
             <Header />
             <AddTask onClickAdd={handleClickAdd}/>
             <TaskList onClickDelete={handleClickDelete} onClickRadio={handleClickRadio} arrayTask={arrayTask}/>
-            <ButtonDanger onClickClear={handleClickClear} taskPending={taskPending}/>        
+            <ButtonDanger onClickClear={handleClickClear} taskPending={taskPending}/>    
         </div>
     )
 }
