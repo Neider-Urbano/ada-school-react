@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import Header from './Header';
-import ButtonDanger from './ButtonDanger';
-import AddTask from './addTask'
-import TaskList from './TaskList';
+import {useState, useEffect} from 'react'
 
-const Main = () => {
+const useTask=()=>{
     const [arrayTask,setArrayTask]=useState([])
     const [taskPending,setTaskPending]=useState(arrayTask.length)
     const miStorage = window.localStorage;
@@ -52,6 +48,11 @@ const Main = () => {
         else setTaskPending(taskPending+1)
     }
 
+    const handleClickUpdate=(dataUpdateTask)=>{
+        miStorage.setItem("dataTasks",JSON.stringify(dataUpdateTask))
+        setTaskPending(null)
+    }
+
     const handleClickAdd=(dataNewTask)=>{
         if(dataNewTask.length>0){
             var dataTasks = dataTasks=JSON.parse(miStorage.getItem("dataTasks"))
@@ -67,15 +68,18 @@ const Main = () => {
             alert("escribe alguna tarea")
         }
     }
-
-    return (
-        <div className="containerTask card p-4">
-            <Header />
-            <AddTask onClickAdd={handleClickAdd}/>
-            <TaskList onClickDelete={handleClickDelete} onClickRadio={handleClickRadio} arrayTask={arrayTask}/>
-            <ButtonDanger onClickClear={handleClickClear} taskPending={taskPending}/>    
-        </div>
-    )
+    return [
+        {
+            arrayTask,
+            taskPending
+        },{
+            handleClickClear,
+            handleClickDelete,
+            handleClickRadio,
+            handleClickUpdate,
+            handleClickAdd
+        }
+    ]
 }
 
-export default Main
+export default useTask

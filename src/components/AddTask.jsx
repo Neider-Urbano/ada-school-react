@@ -14,7 +14,7 @@ const AddTask = ({onClickAdd}) => {
   }
   return (
     <div className="containerAddTask">
-        <input type="email" className="form-control" placeholder="escribe una nueva tarea" 
+        <input type="text" className="form-control" placeholder="escribe una nueva tarea" 
           value={newTask} onChange={(e)=>{handleChange(e)}}
         />
         <button type="button" className="btn btn-primary" onClick={()=>{handleClick()}}>
