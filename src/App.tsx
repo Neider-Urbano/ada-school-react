@@ -2,21 +2,33 @@ import "./App.css";
 import MainDiv from "./components/MainDiv.jsx";
 import { lazy, Suspense } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "@chakra-ui/react";
 
 const Home = lazy(() => import("./components/HomePage"));
 const AboutUs = lazy(() => import("./components/AboutUsPage"));
 const TaskPage = lazy(() => import("./components/TareasPage"));
+
 function App() {
   return (
     <div className="container mainTask d-block">
       <nav className="mt-3 mb-3">
-        <Link to="/" className="mr-3">
-          Home
-        </Link>
-        <Link to="/AboutUs" className="mr-3">
-          AboutUs
-        </Link>
-        <Link to="/task">Tareas</Link>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Link to="/" className="mr-3">
+              Home
+            </Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem>
+            <Link to="/AboutUs" className="mr-3">
+              AboutUs
+            </Link>
+          </BreadcrumbItem>
+
+          <BreadcrumbItem isCurrentPage>
+            <Link to="/task">Tasks</Link>
+          </BreadcrumbItem>
+        </Breadcrumb>
       </nav>
       <Routes>
         <Route
