@@ -1,11 +1,14 @@
+import { Button, Text } from "@chakra-ui/react";
 
-const ButtonDanger = ({onClickClear,taskPending}) => {
+const ButtonDanger = ({ onClickClear, taskPending }) => {
   return (
     <div className="buttonDanger">
-        <p>You have {taskPending} pending task</p>
-        <button type="button" className="btn btn-danger" onClick={onClickClear}>Clear all</button>
+      <Text>You have {taskPending} pending task</Text>
+      <Button colorScheme="red" onClick={onClickClear}>
+        Clear all
+      </Button>
     </div>
-  )
-}
+  );
+};
 
-export default ButtonDanger
+export default ButtonDanger;

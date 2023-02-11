@@ -25,16 +25,16 @@ const TareasPage = () => {
             <Tr>
               <Th>Id</Th>
               <Th>Name</Th>
-              <Th isNumeric>Description</Th>
+              <Th>Description</Th>
             </Tr>
           </Thead>
           <Tbody>
             {arrayTask.map((task, key) => {
               return (
                 <Tr key={key}>
-                  <Td className="d-inline mr-3">{task.id}</Td>
-                  <Td className="d-inline mr-3">{task.task.name}metres (m)</Td>
-                  <Td isNumericclassName="d-inline">{task.task.description}</Td>
+                  <Td>{task.id}</Td>
+                  <Td>{task.task.name}</Td>
+                  <Td>{task.task.description}</Td>
                 </Tr>
               );
             })}
@@ -43,7 +43,7 @@ const TareasPage = () => {
             <Tr>
               <Th>Id</Th>
               <Th>Name</Th>
-              <Th isNumeric>Description</Th>
+              <Th>Description</Th>
             </Tr>
           </Tfoot>
         </Table>

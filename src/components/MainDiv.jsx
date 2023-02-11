@@ -3,6 +3,7 @@ import ButtonDanger from "./ButtonDanger";
 import AddTask from "./addTask";
 import TaskList from "./TaskList";
 import useTask from "../hooks/useTask";
+import { Card } from "@chakra-ui/react";
 
 const MainDiv = () => {
   const [states, actions] = useTask();
@@ -16,7 +17,7 @@ const MainDiv = () => {
   } = actions;
 
   return (
-    <div className="containerTask card p-4">
+    <Card className="containerTask p-4">
       <Header />
       <AddTask onClickAdd={handleClickAdd} />
       <TaskList
@@ -26,7 +27,7 @@ const MainDiv = () => {
         onClickUpdate={handleClickUpdate}
       />
       <ButtonDanger onClickClear={handleClickClear} taskPending={taskPending} />
-    </div>
+    </Card>
   );
 };
 
