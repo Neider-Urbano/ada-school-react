@@ -72,7 +72,7 @@ const useTask = () => {
         miStorage.setItem("dataTasks", JSON.stringify(dataTasks));
         setTaskPending(taskPending + 1);
       } else {
-        alert("la tarea debe tener al menos tres caracteres");
+        alert("la tarea debe mas de tres caracteres");
       }
     } else {
       alert("escribe alguna tarea");

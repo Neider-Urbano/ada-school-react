@@ -77,7 +77,7 @@ export const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Last name</FormLabel>
+              <FormLabel>description task</FormLabel>
               <Input
                 type="text"
                 name="description"
