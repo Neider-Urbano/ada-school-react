@@ -1,4 +1,3 @@
-import React from "react";
 import useTask from "../hooks/useTask";
 import {
   Table,
@@ -8,14 +7,12 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
 
 const TareasPage = () => {
   const [states] = useTask();
   const { arrayTask, taskPending } = states;
-  console.log(arrayTask);
   return (
     <div>
       <h1>Mis Tasks</h1>

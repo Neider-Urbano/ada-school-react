@@ -42,41 +42,22 @@ function App() {
           </button>
         </div>
       </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<p>Cargando...</p>}>
-              <Home />
-              <MainDiv />
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/aboutus"
-          element={
-            <Suspense fallback={<p>Cargando...</p>}>
-              <AboutUs />
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/task"
-          element={
-            <Suspense fallback={<p>Cargando...</p>}>
-              <TaskPage />
-            </Suspense>
-          }
-        ></Route>
-        <Route
-          path="/*"
-          element={
-            <Suspense fallback={<p>Cargando...</p>}>
-              <p>Page Not Found</p>
-            </Suspense>
-          }
-        ></Route>
-      </Routes>
+      <Suspense fallback={<p>Cargando...</p>}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <MainDiv />
+              </>
+            }
+          ></Route>
+          <Route path="/aboutus" element={<AboutUs />}></Route>
+          <Route path="/task" element={<TaskPage />}></Route>
+          <Route path="/*" element={<p>Page Not Found</p>}></Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

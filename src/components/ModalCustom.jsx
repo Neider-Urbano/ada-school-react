@@ -12,8 +12,9 @@ import {
   ModalFooter,
   Button,
 } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 
-export const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
+const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
   const miStorage = window.localStorage;
   var dataTasks = JSON.parse(miStorage.getItem("dataTasks"));
 
@@ -110,3 +111,11 @@ export const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
     </div>
   );
 };
+
+ModalCustom.propTypes = {
+  dataTask: PropTypes.object.isRequired,
+  onClickUpdate: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
+export default ModalCustom;

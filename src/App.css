@@ -1,50 +1,51 @@
-.mainTask{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.mainTask {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
 }
-.containerTask{
-    width: 35rem;
+.containerTask {
+  width: 35rem;
 }
-.buttonDanger{
-    display:flex;
-    justify-content: space-between;
-    margin-top: 80px;
+.buttonDanger {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
 }
-.containerCardTask{
-    display: flex;
-    flex-direction: row;
-    padding: 5px 7px;
-    margin-bottom: 10px;
-}
-
-.containerCardTask .form-check{
-    width: 80%;
-}
-.containerCardTask .div-buttons{
-    width: 20%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+.containerCardTask {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 7px;
+  margin-bottom: 10px;
 }
 
-.containerCardTask .div-buttons svg{
-    cursor: pointer;
+.containerCardTask .form-check {
+  width: 80%;
+}
+.containerCardTask .div-buttons {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.containerAddTask{
-    display: flex;
-    margin-bottom: 20px;
+.containerCardTask .div-buttons svg {
+  cursor: pointer;
 }
 
-.containerAddTask button{
-    margin-left: 15px;
+.containerAddTask {
+  display: flex;
+  margin-bottom: 20px;
 }
-.form-check-input{
-    cursor: pointer;
+
+.containerAddTask button {
+  margin-left: 15px;
 }
-.active{
-    text-decoration:line-through;
-    color: gray;
+.form-check-input {
+  cursor: pointer;
+}
+.active {
+  text-decoration: line-through;
+  color: gray;
 }
