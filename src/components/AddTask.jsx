@@ -19,7 +19,8 @@ const AddTask = ({ onClickAdd, clickHandlerRef }) => {
   const handleClick = (e) => {
     e.preventDefault();
     clickHandlerRef(false);
-    onClickAdd(data);
+    onClickAdd(data.name, data.description);
+    console.log(data);
     setData(initialState);
   };
 

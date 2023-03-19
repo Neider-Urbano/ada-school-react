@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { State } from "../models/task/levels.enum";
 
 const useTask = () => {
   const [arrayTask, setArrayTask] = useState([]);
@@ -53,21 +54,27 @@ const useTask = () => {
     setTaskPending(null);
   };
 
-  const handleClickAdd = (dataNewTask) => {
-    if (dataNewTask.name.length > 0) {
-      if (dataNewTask.name.length > 3) {
+  const handleClickAdd = (name, description) => {
+    if (name.length > 0) {
+      if (name.length > 3) {
         var dataTasks = (dataTasks = JSON.parse(
           miStorage.getItem("dataTasks")
         ));
         if (dataTasks) {
           dataTasks.push({
             id: Math.max(...dataTasks.map((task) => task.id)) + 1,
-            task: dataNewTask,
-            state: false,
+            name: name,
+            description: description,
+            state: State.PENDIENTE,
           });
         } else {
           dataTasks = [];
-          dataTasks.push({ id: 1, task: dataNewTask, state: false });
+          dataTasks.push({
+            id: 1,
+            name: name,
+            description: description,
+            state: State.PENDIENTE,
+          });
         }
         miStorage.setItem("dataTasks", JSON.stringify(dataTasks));
         setTaskPending(taskPending + 1);

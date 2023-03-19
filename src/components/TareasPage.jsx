@@ -30,8 +30,8 @@ const TareasPage = () => {
               return (
                 <Tr key={key}>
                   <Td>{task.id}</Td>
-                  <Td>{task.task.name}</Td>
-                  <Td>{task.task.description}</Td>
+                  <Td>{task.name}</Td>
+                  <Td>{task.description}</Td>
                 </Tr>
               );
             })}

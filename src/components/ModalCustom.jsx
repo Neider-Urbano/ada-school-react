@@ -13,6 +13,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+import TaskClass from "../models/task/data.class";
 
 const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
   const miStorage = window.localStorage;
@@ -21,7 +22,7 @@ const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
   const initialRef = useRef(null);
   const finalRef = useRef(null);
 
-  const [valueInput, setValueInput] = useState(dataTask.task);
+  const [valueInput, setValueInput] = useState(dataTask);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -29,7 +30,7 @@ const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
   };
 
   const handleChangeClose = () => {
-    setValueInput(dataTask.task);
+    setValueInput(dataTask);
   };
 
   const handleChangeSave = () => {
@@ -41,14 +42,14 @@ const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
       var newList = [];
       dataTasks.map((task) => {
         if (task.id == dataTask.id) {
-          task.task.name = valueInput.name;
-          task.task.description = valueInput.description;
+          task.name = valueInput.name;
+          task.description = valueInput.description;
         }
         newList.push(task);
       });
       onClickUpdate(newList);
     } else {
-      setValueInput(dataTask.task);
+      setValueInput(dataTask);
     }
   };
 
@@ -113,7 +114,7 @@ const ModalCustom = ({ dataTask, onClickUpdate, isOpen, onClose }) => {
 };
 
 ModalCustom.propTypes = {
-  dataTask: PropTypes.object.isRequired,
+  dataTask: PropTypes.instanceOf(TaskClass),
   onClickUpdate: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

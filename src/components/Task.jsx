@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, useDisclosure, Card } from "@chakra-ui/react";
 import ModalCustom from "./ModalCustom";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import PropTypes from "prop-types";
+import TaskClass from "../models/task/data.class";
 
 const Task = ({ dataTask, onClickDelete, onClickRadio, onClickUpdate }) => {
   const [active, setActive] = useState(dataTask.state);
-  const { name } = dataTask.task;
+  const { name } = dataTask;
   const { id } = dataTask;
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleClick = () => {
     if (active) onClickRadio(false, id);
     else onClickRadio(true, id);
     setActive(!active);
   };
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Card>
       <div className="containerCardTask">
@@ -53,7 +53,7 @@ const Task = ({ dataTask, onClickDelete, onClickRadio, onClickUpdate }) => {
 };
 
 Task.propTypes = {
-  dataTask: PropTypes.object.isRequired,
+  dataTask: PropTypes.instanceOf(TaskClass),
   onClickDelete: PropTypes.func.isRequired,
   onClickRadio: PropTypes.func.isRequired,
   onClickUpdate: PropTypes.func.isRequired,
