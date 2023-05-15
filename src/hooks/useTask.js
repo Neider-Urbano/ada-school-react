@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 
 const useTask = () => {
-  const [arrayTask, setArrayTask] = useState([]);
+  const [arrayTask, setArrayTask] = useState([
+    {
+      id: 1,
+      task: { name: "ejemplo 1", description: "para ada-school" },
+      state: true,
+    },
+  ]);
   const [taskPending, setTaskPending] = useState(arrayTask.length);
   const miStorage = window.localStorage;
 
   useEffect(() => {
     var dataTasks = JSON.parse(miStorage.getItem("dataTasks"));
-    if (dataTasks) {
+    if (dataTasks?.length > 0) {
       setArrayTask(dataTasks);
       let cantidadPending = 0;
       dataTasks?.map((task) => {
@@ -16,6 +22,8 @@ const useTask = () => {
         }
       });
       setTaskPending(cantidadPending);
+    } else {
+      miStorage.setItem("dataTasks", JSON.stringify(arrayTask));
     }
   }, [taskPending]);
 
