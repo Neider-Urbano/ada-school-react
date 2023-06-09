@@ -28,7 +28,7 @@ const AddTask = ({ onClickAdd }) => {
     >
       <input
         type="text"
-        className="form-control mr-3"
+        className="form-control mr-3 input-name"
         placeholder="escribe una nueva tarea *"
         name="name"
         value={data.name}
@@ -46,7 +46,7 @@ const AddTask = ({ onClickAdd }) => {
           handleChange(e);
         }}
       />
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary button-enviar">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"

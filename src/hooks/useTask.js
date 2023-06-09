@@ -1,13 +1,8 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 const useTask = () => {
-  const [arrayTask, setArrayTask] = useState([
-    {
-      id: 1,
-      task: { name: "ejemplo 1", description: "para ada-school" },
-      state: true,
-    },
-  ]);
+  const [arrayTask, setArrayTask] = useState([]);
   const [taskPending, setTaskPending] = useState(arrayTask.length);
   const miStorage = window.localStorage;
 
@@ -23,7 +18,10 @@ const useTask = () => {
       });
       setTaskPending(cantidadPending);
     } else {
-      miStorage.setItem("dataTasks", JSON.stringify(arrayTask));
+      axios.get("http://localhost:5173/src/hooks/data.json").then((data) => {
+        setArrayTask(data.data);
+        miStorage.setItem("dataTasks", JSON.stringify(data.data));
+      });
     }
   }, [taskPending]);
 
